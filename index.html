@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>𝐇𝐚𝐌𝐨𝐊𝐬𝐇𝐚 - صفحتي الشخصية</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -10,10 +11,11 @@
 
     body {
       font-family: 'Cairo', sans-serif;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1600&q=80')
-      no-repeat center center fixed;
+      background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg');
       background-size: cover;
+      background-position: center;
       text-align: center;
       padding: 50px;
       direction: rtl;
@@ -21,27 +23,19 @@
     }
 
     img {
-      width: 170px;
-      height: 170px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       border: 4px solid #fff;
       margin-bottom: 20px;
-      box-shadow: 0 0 25px rgba(255,255,255,0.6);
+      box-shadow: 0 0 30px rgba(255,255,255,0.7);
     }
 
     h1 {
-      font-size: 38px;
-      margin: 10px 0;
-      animation: typing 3s steps(10) forwards;
-      white-space: nowrap;
-      overflow: hidden;
-      border-left: 3px solid white;
-      width: 0;
-      margin-inline: auto;
-    }
-
-    @keyframes typing {
-      to { width: 9ch; }
+      font-size: 40px;
+      margin: 15px 0;
+      min-height: 60px;
+      letter-spacing: 2px;
     }
 
     p {
@@ -60,7 +54,7 @@
       width: 270px;
       margin: 12px auto;
       padding: 14px;
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: rgba(255,255,255,0.15);
       color: white;
       text-decoration: none;
       border-radius: 12px;
@@ -83,11 +77,11 @@
 
 <body>
 
-  <!-- صورة شخصية -->
-  <img src="https://i.ibb.co/FN05Fy6/IMG-20251122-WA0012.jpg" alt="𝐇𝐚𝐌𝐨𝐊𝐬𝐇𝐚">
+  <!-- الصورة -->
+  <img src="https://i.ibb.co/YGGK5wj/IMG-20251005-003036-067.jpg" alt="𝐇𝐚𝐌𝐨𝐊𝐬𝐇𝐚">
 
-  <!-- الاسم -->
-  <h1>𝐇𝐚𝐌𝐨𝐊𝐬𝐇𝐚</h1>
+  <!-- الاسم المتحرك -->
+  <h1 id="name"></h1>
 
   <!-- النبذة -->
   <p>
@@ -114,6 +108,33 @@
   <a href="https://h7mksha.sarhne.com" target="_blank">
     <i class="fa-regular fa-envelope"></i> صارحني
   </a>
+
+  <!-- سكريبت كتابة ومسح الاسم -->
+  <script>
+    const text = "𝐇𝐚𝐌𝐨𝐊𝐬𝐇𝐚";
+    const el = document.getElementById("name");
+    let index = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      if (!deleting) {
+        el.textContent = text.slice(0, index++);
+        if (index > text.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1500);
+          return;
+        }
+      } else {
+        el.textContent = text.slice(0, index--);
+        if (index < 0) {
+          deleting = false;
+        }
+      }
+      setTimeout(typeEffect, deleting ? 120 : 200);
+    }
+
+    typeEffect();
+  </script>
 
 </body>
 </html>
